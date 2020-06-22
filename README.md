@@ -1,7 +1,6 @@
 # MapReduce
-This repository contains the map reduce code discussed during the Hadoop tutorial, and instructions to execute it...
+This repository contains the code for the tutorials of "It's all about Data" YouTube channel.
 
-The tutorial playlist can be found in the below link
+The channel link can be found below
 
-
-https://www.youtube.com/watch?v=3pglccqs6I4&list=PLhBHsIWXCvwYCVw0liZAQERjrgJc8aQ2A
+https://www.youtube.com/channel/UCvO-Hjj-v8-ZBlloLwqTDzw/playlists
