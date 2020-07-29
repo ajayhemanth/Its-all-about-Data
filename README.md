@@ -3,3 +3,6 @@ This repository contains the code for the tutorials of "It's all about Data" You
 The channel link can be found below
 
 https://www.youtube.com/channel/UCvO-Hjj-v8-ZBlloLwqTDzw/playlists
+
+
+https://www.linkedin.com/in/ajayhemanth/
