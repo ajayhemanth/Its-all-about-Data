@@ -1,7 +1,3 @@
-# Why Data.table
-#   *Extremely Fast* in execution
-#   Consistent and simply syntax for filter, groupby aggregate, select, and sort
-
 
 library('data.table')
 
@@ -259,6 +255,17 @@ iris1 = setDF(iris)
 # setDT converts by reference (converts the existing variable), and hence the below will throw an error because iris cannot be converted as it is part of R tool
 iris1 = setDT(iris)
 
+
+##################
+
+# Variable with same name as that of column
+
+# https://stackoverflow.com/questions/32738499/data-table-assignments-when-variable-has-same-name-as-a-column
+
+iris1 = as.data.table(iris)
+Species="setosa"
+iris1[ Species==get("Species", envir=.GlobalEnv)  ] # GOOD
+iris1[ Species==.GlobalEnv$Species ] # BEST
 
 ##################
 
