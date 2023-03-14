@@ -1,3 +1,7 @@
+# Why Data.table
+#   *Extremely Fast* in execution
+#   Consistent and simply syntax for filter, groupby aggregate, select, and sort
+#   It is threaded and can execute on multiple cores of the system, which make it so fast. You can change the number of cores to be used.
 
 library('data.table')
 
@@ -242,6 +246,42 @@ iris1[ Species=='setosa' , .("a"=5, "b"=6, Sepal.Length) ] [] # Correct, because
 # operation on certain columns of the dataframe
 iris1 = as.data.table(iris)
 iris1[  , dateCols := lapply(iris1[,dateCols,with=FALSE], as.Date, tz="Australia/Brisbane"), with=FALSE ]
+
+
+# Boolean + Assignment
+iris1 = as.data.table(iris)
+iris1[  , c(TRUE, FALSE, FALSE, FALSE, FALSE) ] = 5 # WRONG -- cannot assign when selecting using boolean
+iris1[  , which(c(TRUE, FALSE, FALSE, FALSE, FALSE)) ] = 5 # Correct
+
+
+
+#  with = FALSE should not be used when assigning, but should be used for selection... compare case-0,1,2,3
+# https://stackoverflow.com/questions/75732050/with-argument-in-data-table-usage-confusion
+
+library("data.table")
+iris1 = as.data.table(iris)
+
+# Case - 0
+iris1[  , grep("Petal", names(iris1)) ] # Wrong (not error though, just retuns column number corresponding to Petal)
+
+# Case - 1
+iris1[  , grep("Petal", names(iris1)) , with=FALSE ] # Correct
+
+# Case - 2
+# Error in [<-.data.table(*tmp*, , grep("Petal", names(iris1)), with = FALSE,  : unused argument (with = FALSE)
+iris1[  , grep("Petal", names(iris1)) , with=FALSE ] = 5 # Wrong
+
+# isn't it not similar to the below ?
+iris1[,c(3,4)] = 5
+
+# Case - 3
+iris1[  , grep("Petal", names(iris1))  ] = 5 # Correct
+
+# Case - 2.2
+iris1[  , grep("Petal", names(iris1)) := 5 , with=FALSE ] # Correct with warning
+
+# Case - 3.2
+iris1[  , grep("Petal", names(iris1)) := 5  ] # Correct
 
 
 
